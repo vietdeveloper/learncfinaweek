@@ -1,5 +1,5 @@
 <cfscript>
-    personalInfo = {name='Viet', dob='', address='12345 Main Street, Los Angeles, CA 92001', phonenumber='(213) 555-5555', email='viet@example.com', website='vietla.blogspot.com', skype=''};
+    personalInfo = {name='Viet', dob='', address='12345 Main Street, Los Angeles, CA 90001', phonenumber='(213) 555-5555', email='viet@example.com', website='vietla.blogspot.com', skype=''};
 </cfscript>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
