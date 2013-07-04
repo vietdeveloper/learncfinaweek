@@ -1,3 +1,4 @@
+<cfset mySkills = "ColdFusion,HTML5,CSS3,MySQL,JQuery" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -151,11 +152,11 @@
 								<!-- Skills Listing -->
 								<div class="skills">
 									<ul>
-										<li class="ColdFusion" id="ColdFusion">ColdFusion</li>
-										<li class="HTML5">HTML5</li>
-										<li class="CSS3">CSS3</li>
-										<li class="MySQL">MySQL</li>
-										<li class="JQuery">JQuery</li>
+                                        <cfoutput>
+                                            <cfloop list="#mySkills#" index="skill">
+                                                <li class="#skill#" id="#skill#">#skill#</li>
+                                            </cfloop>
+                                        </cfoutput>
 									</ul>
 								</div>
 							</div>
