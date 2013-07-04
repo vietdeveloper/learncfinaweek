@@ -1,4 +1,8 @@
-<cfset mySkills = "ColdFusion,HTML5,CSS3,MySQL,JQuery" />
+<cfquery name="mySkillset" datasource="learncfinaweek">
+    SELECT name 
+    FROM skillset
+    ORDER BY name DESC
+</cfquery>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -153,8 +157,8 @@
 								<div class="skills">
 									<ul>
                                         <cfoutput>
-                                            <cfloop list="#mySkills#" index="skill">
-                                                <li class="#skill#" id="#skill#">#skill#</li>
+                                            <cfloop query="mySkillset">
+                                                <li class="#mySkillset.name#" id="#mySkillset.name#">#mySkillset.name#</li>
                                             </cfloop>
                                         </cfoutput>
 									</ul>
