@@ -1,8 +1,10 @@
 <cfscript>
     myPortfolio = [];
-    arrayAppend(myPortfolio, {title='Title 1', website='http://www.website1.com', image='portfolio1.png', description='Description 1'});
-    arrayAppend(myPortfolio, {title='Title 2', website='http://www.website2.com', image='portfolio2.png', description='Description 2'});
-    arrayAppend(myPortfolio, {title='Title 3', website='http://www.website3.com', image='portfolio3.png', description='Description 3'});
+    arrayAppend(myPortfolio, {title='Classic ASP', website='http://vietla.blogspot.com/2013/07/using-github-for-windows-with-bitbucket.html', image='portfolio1.png', description='This is the first web site I built in 1999.'});
+    arrayAppend(myPortfolio, {title='ASP.NET', website='http://vietla.blogspot.com/2013/05/error-when-add-storemanagercontroller.html', image='portfolio2.png', description='I built a second web site using ASP.NET around 2001'});
+    arrayAppend(myPortfolio, {title='PHP.NET', website='http://vietla.blogspot.com/2013/05/my-experience-with-android-studio.html', image='portfolio3.png', description='A third web site is in PHP in 2010.'});
+    arrayAppend(myPortfolio, {title='My Blog', website='http://vietla.blogspot.com', image='portfolio4.png', description='My personal blog'});
+    arrayAppend(myPortfolio, {title='My Web', website='http://vietla.net', image='portfolio5.png', description='My personal web'});
 </cfscript>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
