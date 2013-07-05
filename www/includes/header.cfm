@@ -1,4 +1,4 @@
-<cfparam name="secion" default="home" />
+<cfparam name="section" default="home" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -52,8 +52,8 @@
 								<li class="about" <cfif section eq "about">id="selected"</cfif>><a href="about.cfm">About</a></li>
 								<li class="resume" <cfif section eq "resume">id="selected"</cfif>><a href="resume.cfm">Resume</a></li>
 								<li class="blog" <cfif section eq "blog">id="selected"</cfif>><a href="blog.cfm">Blog</a></li>
-								<li class="portfolio" <cfif section eq="portfolio">id="selected"</cfif>><a href="portfolio.cfm">Portfolio</a></li>
-								<li class="contact" <cfif section eq="contact">id="selected"</cfif>><a href="contact.cfm">Contact</a></li>	
+								<li class="portfolio" <cfif section eq "portfolio">id="selected"</cfif>><a href="portfolio.cfm">Portfolio</a></li>
+								<li class="contact" <cfif section eq "contact">id="selected"</cfif>><a href="contact.cfm">Contact</a></li>	
 							</ul>
 						</div>
 					</div>
