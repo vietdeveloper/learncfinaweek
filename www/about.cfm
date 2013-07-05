@@ -1,6 +1,14 @@
 <cfscript>
     personalInfo = {name='Viet', dob='', address='12345 Main Street, Los Angeles, CA 90001', phonenumber='(213) 555-5555', email='viet@example.com', website='vietla.blogspot.com', skype=''};
 </cfscript>
+<cffunction name="convertStringToASCII" output="false" returntype="string" hint="Converts String to ASCII String">
+    <cfargument name="stringToBeConverted" type="string" required="true" />
+    <cfset var convertedString='' />
+    <cfloop from="1" to="#len(arguments.stringToBeConverted)#" index="i">
+        <cfset convertedString &= '&##' & asc(mid(arguments.stringToBeConverted, i, 1)) & ';' />
+    </cfloop>
+    <cfreturn convertedString />
+</cffunction>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -118,7 +126,7 @@
 							<div class="clr"><div class="input-box">Date of birth </div><span> #personalInfo.DOB#</span></div>
 							<div class="clr"><div class="input-box">Address</div><span> #personalInfo.address#</span></div>
 							<div class="clr"><div class="input-box">Phone</div> <span>#personalInfo.phonenumber#</span>  </div>
-							<div class="clr"><div class="input-box">E-mail</div><span><a href="##">#personalInfo.email#</a></span>  </div>
+							<div class="clr"><div class="input-box">E-mail</div><span><a href="##">#convertStringToASCII(personalInfo.email)#</a></span>  </div>
 							<div class="clr"><div class="input-box">Website </div> <span><a href="##">#personalInfo.website#</a></span> </div> 
 							<div class="clr"><div class="box1">Skype </div> <span><a href="##">#personalInfo.skype#</a></span> </div> 
                             </cfoutput>
