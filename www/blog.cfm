@@ -5,7 +5,8 @@
 	JOIN category ON category.id=postcategoryjn.categoryid 
 	ORDER BY dateposted DESC;
 </cfquery>
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="blog">
 		
 		<!-- Content Start -->
     

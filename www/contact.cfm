@@ -5,7 +5,8 @@
 <cfscript>
     contactInfo = {address='12345 Main Street, Los Angeles, CA 90001', phonenumber='(213) 555-5555', email='viet@example.com', skype=''};
 </cfscript>
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="contact">
 		
 		<!-- Content Start -->
   	

@@ -4,7 +4,8 @@
 	myQry.SetSQL("SELECT title, website, image, summary AS description FROM portfolio ORDER BY id");
 	portfolio = myQry.execute().getResult();
 </cfscript>
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="portfolio">
 		
 		<!-- Content Start -->
     

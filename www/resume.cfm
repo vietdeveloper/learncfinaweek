@@ -8,7 +8,8 @@
 	FROM resume 
 	ORDER BY type, endDate, startDate
 </cfquery>
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="resume">
 		
 		<!-- Content Start -->
     

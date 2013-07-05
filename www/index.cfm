@@ -1,6 +1,7 @@
 <cfset myName="Viet" />
 <cfset myPosition="A Developer" />
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="home">
 	
 		<!-- Content Start -->
   	
