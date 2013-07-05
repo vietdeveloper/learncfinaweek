@@ -9,7 +9,8 @@
     </cfloop>
     <cfreturn convertedString />
 </cffunction>
-<cfinclude template="includes/header.cfm" />
+<cfimport taglib="customTags/" prefix="layout" />
+<layout:page section="about">
 	
 		<!-- Content Start -->
   	
@@ -70,4 +71,4 @@
 					</div>
 					<div class="clr"></div>
 				</div><!--about end -->
-<cfinclude template="includes/footer.cfm" />
+</layout:page>
