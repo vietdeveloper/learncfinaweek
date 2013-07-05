@@ -1,3 +1,10 @@
+<cfquery name="myPosts" datasource="learncfinaweek">
+	SELECT title, summary, dateposted, category.name, post.id  
+	FROM post 
+	JOIN postcategoryjn ON postcategoryjn.postid=post.id 
+	JOIN category ON category.id=postcategoryjn.categoryid 
+	ORDER BY dateposted DESC;
+</cfquery>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -86,40 +93,26 @@
 						<div class="clr">
 							<div class="left">
 								<!-- Blog Posts -->
-								<!-- Start Blog Post -->
-								<h5>
-									<span>8/6/2012 </span>
-								</h5>
-								<h2>
-									<a href="blogpost.cfm?id=">WebSocket example with keyword highlighting</a>
-								</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar erat eu metus egestas ut aliquet ante adipiscing. Maecenas eget laoreet dolor. Pellentesque sagittis nisl ac nulla semper facilisis pulvinar elit scelerisque. Nulla mollis fermentum eros a pulvinar. Mauris faucibus fringilla dolor, ut consectetur orci euismod eget. Phasellus ut dui ut tellus aliquam feugiat id at elit. Nulla facilisi. Suspendisse.</p>
-								<p class="summary">
-									<strong>Categories:</strong> ColdFusion <strong>Comments:</strong> 12
-								</p>
-								<!-- End Blog Post -->
-								
-								<h5>
-									<span>8/6/2012 </span>
-								</h5>
-								<h2>
-									<a href="blogpost.cfm?id=">ColdFusion scheduled tasks</a>
-								</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus urna in turpis eleifend vel faucibus eros sodales. Donec gravida nunc a metus semper tincidunt. Quisque porttitor ullamcorper massa et vestibulum. Aenean vulputate commodo placerat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sit amet suscipit lectus. Nunc convallis imperdiet bibendum. Nullam eu orci ut magna laoreet sodales ac id purus. Integer dapibus velit sit amet mi commodo ut hendrerit augue facilisis. Etiam rhoncus porta.</p>
-								<p class="summary">
-									<strong>Categories:</strong> ColdFusion <strong>Comments:</strong> 9
-								</p>
-				
-								<h5>
-									<span>8/6/2012 </span>
-								</h5>
-								<h2>
-									<a href=blogpost.cfm?id="">ColdFusion Developer Week Recordings</a>
-								</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisi erat, ornare vehicula convallis at, viverra quis sapien. Ut gravida risus in eros semper quis eleifend erat aliquet. Duis tincidunt urna sed quam tempus imperdiet. Aenean in cursus odio. Fusce ornare, elit vel malesuada commodo, magna ipsum tempus sapien, et tempus urna enim eu diam. Aliquam accumsan, ante ut pharetra malesuada, mi nunc facilisis sem, non dictum massa ipsum sed diam. Phasellus.</p>
-								<p class="summary">
-									<strong>Categories:</strong> ColdFusion <strong>Comments:</strong> 1
-								</p>
+								<cfoutput query="myPosts" group="id">
+									<!-- Start Blog Post -->
+									<h5>
+										<span>#dateformat(myPosts.dateposted, "mm/dd/yy")# </span>
+									</h5>
+									<h2>
+										<a href="blogpost.cfm?id=">#myPosts.title#</a>
+									</h2>
+									<p>#myPosts.summary#</p>
+									<p class="summary">
+										<strong>Categories:</strong> 
+										<cfoutput>
+											#name# 
+										</cfoutput>
+										<!--- 
+										ColdFusion <strong>Comments:</strong> 12
+										--->
+									</p>
+									<!-- End Blog Post -->
+								</cfoutput>
 							</div>
 							<div class="right" >
 								<h2>Categories</h2>
