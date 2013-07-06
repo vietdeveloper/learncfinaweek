@@ -1,10 +1,4 @@
-<cfquery name="myPosts">
-	SELECT title, summary, dateposted, category.name, post.id  
-	FROM post 
-	JOIN postcategoryjn ON postcategoryjn.postid=post.id 
-	JOIN category ON category.id=postcategoryjn.categoryid 
-	ORDER BY dateposted DESC;
-</cfquery>
+<cfset blogPosts = EntityLoad('blogPost') />
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="blog">
 		
@@ -30,26 +24,23 @@
 						<div class="clr">
 							<div class="left">
 								<!-- Blog Posts -->
-								<cfoutput query="myPosts" group="id">
+                                <cfoutput>
+								<cfloop array="#blogPosts#" index="blogPost">
 									<!-- Start Blog Post -->
 									<h5>
-										<span>#dateformat(myPosts.dateposted, "mm/dd/yy")# </span>
+										<span>#dateformat(blogPost.dateposted, "mm/dd/yy")# </span>
 									</h5>
 									<h2>
-										<a href="blogpost.cfm?id=">#myPosts.title#</a>
+										<a href="blogpost.cfm?id=#blogPost.id#">#blogPost.title#</a>
 									</h2>
-									<p>#myPosts.summary#</p>
+									<p>#blogPost.summary#</p>
 									<p class="summary">
 										<strong>Categories:</strong> 
-										<cfoutput>
-											#name# 
-										</cfoutput>
-										<!--- 
-										ColdFusion <strong>Comments:</strong> 12
-										--->
+										<strong>Comments:</strong> #arrayLen(blogPost.getComments())#
 									</p>
 									<!-- End Blog Post -->
-								</cfoutput>
+								</cfloop>
+                                </cfoutput>
 							</div>
 							<div class="right" >
 								<h2>Categories</h2>
