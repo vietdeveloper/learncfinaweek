@@ -1,6 +1,5 @@
 <cfscript>
 	myQry = new Query();
-	myQry.SetDataSource("learncfinaweek");
 	myQry.SetSQL("SELECT title, website, image, summary AS description FROM portfolio ORDER BY id");
 	portfolio = myQry.execute().getResult();
 </cfscript>

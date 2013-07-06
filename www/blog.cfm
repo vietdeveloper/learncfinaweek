@@ -1,4 +1,4 @@
-<cfquery name="myPosts" datasource="learncfinaweek">
+<cfquery name="myPosts">
 	SELECT title, summary, dateposted, category.name, post.id  
 	FROM post 
 	JOIN postcategoryjn ON postcategoryjn.postid=post.id 
