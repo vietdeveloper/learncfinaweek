@@ -22,6 +22,17 @@
 	
 	<cfif !errorBean.hasErrors()>
 		<!--- Image Upload Process --->
+        <cfif len(form.image)>
+            <cffile action="upload" filefield="image" destination="#GetTempDirectory()#" nameconflict="makeunique" />
+            <cfif ListFindNoCase(GetReadableImageFormats(), cffile.serverFileExt)>
+                <cfset imageObject = ImageRead(cffile.serverDirectory & '/' & cffile.serverfile) />
+                <cfset ImageScaleToFit(imageObject, '202','131') />
+                <cfset ImageWrite(imageObject, ExpandPath('../../../assets/images/portfolio/#cffile.serverfile#')) />
+                <cfset form.image = cffile.serverfile />
+            <cfelse>
+                <cfset form.image='' />
+            </cfif>
+        </cfif>
 			
 		<!--- Save Portfolio --->	
 		<cfif val(form.id)>
@@ -53,7 +64,7 @@
 					<cfqueryparam value="#trim(form.summary)#" cfsqltype="cf_sql_varchar" />,
 					<cfqueryparam value="#trim(form.website)#" cfsqltype="cf_sql_varchar" />
 					<cfif len(form.image)>
-						<cfqueryparam value="#trim(form.image)#" cfsqltype="cf_sql_varchar" />
+						, <cfqueryparam value="#trim(form.image)#" cfsqltype="cf_sql_varchar" />
 					</cfif>	
 				)
 			</cfquery>
