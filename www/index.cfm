@@ -1,5 +1,3 @@
-<cfset myName="Viet" />
-<cfset myPosition="A Developer" />
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="home">
 	
@@ -15,8 +13,8 @@
 							<div class="top-left" >
 								<!-- Data Output -->
                                 <!--- This is where the name and position are output --->
-								<div class="tag">HELLO, <span>I'M <cfoutput>#myName#</cfoutput>,</span></div>
-								<div class="sub-tag"><cfoutput>#myPosition#</cfoutput></div>
+								<div class="tag">HELLO, <span>I'M <cfoutput>#application.myName#</cfoutput>,</span></div>
+								<div class="sub-tag"><cfoutput>#application.myPosition#</cfoutput></div>
 							</div> 
 						</div>
 					</div>

@@ -1,4 +1,4 @@
-<cfquery name="mySkillset" datasource="learncfinaweek">
+<cfquery name="mySkillset">
     SELECT name 
     FROM skillset
     ORDER BY name DESC
