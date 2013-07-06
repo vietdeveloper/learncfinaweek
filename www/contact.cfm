@@ -59,6 +59,13 @@
                                             <p>You did not provide all the required information!</p>
                                         <cfelse>
                                             <p>Form summitted successfully!</p>
+                                            <cfmail from="#form.email#" to="me@example.com" subject="Contact Request" type="HTML">
+                                                <h2>Contact Request</h2>
+                                                <p>
+                                                    From: #form.contactName# (#form.email#)
+                                               </p>
+                                               <p>#form.message#</p>
+                                            </cfmail>
                                         </cfif>
                                     </cfif>								
 									<div id="post_message" class="post_message"></div>
