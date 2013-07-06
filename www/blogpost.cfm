@@ -1,6 +1,16 @@
+<cfparam name=form.token default="" />
 <cfparam name=form.submitted default="0" />
 <cfset blogPost = EntityLoad('BlogPost', url.id, true) />
 <cfif form.submitted>
+    <cfif IsSimpleValue(form.author)>
+        <cfset form.author = canonicalize(form.author, true, true) />        
+    </cfif>
+    <cfif IsSimpleValue(form.comment)>
+        <cfset form.comment = canonicalize(form.comment, true, true) />
+    </cfif>
+    <cfif !IsSimpleValue(form.author) || !IsSimpleValue(form.comment) || !CSRFVerifyToken(form.token)>
+        <cfthrow message="Validation Error">
+    </cfif>
     <cfset comment = EntityNew('blogComment') />
     <cfset comment.author = form.author />
     <cfset comment.comment = form.comment />
@@ -59,10 +69,10 @@
                                         <cfloop array=#blogPost.getComments()# index=comment>
 										<li>
 											<p>
-												<strong>Posted On:</strong> #dateFormat(comment.createdDateTime, 'mm/dd/yyyy')# at #timeformat(comment.createdDateTime, 'short')# By #comment.author#
+												<strong>Posted On:</strong> #dateFormat(comment.createdDateTime, 'mm/dd/yyyy')# at #timeformat(comment.createdDateTime, 'short')# By #encodeForHtml(comment.author)#
 											</p>
 											<p>
-												#comment.comment#
+												#encodeForHtml(comment.comment)#
 											</p>
 											<div class="clr hline">&nbsp;</div>
 										</li>
@@ -88,6 +98,7 @@
 										<div>
 											<input id="submitBtn" value="Submit"  name="submit" type="submit" class="submitBtn" />
 										</div>
+                                        <input type="hidden" name="token" value="#CSRFGenerateToken()#" />
 										<input type="hidden" name="submitted" value="1" />
 									</form>
 								</div>	
