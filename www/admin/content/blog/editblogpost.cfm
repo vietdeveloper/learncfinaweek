@@ -43,6 +43,9 @@
             <cfset blogPost.body = form.body />
             <cfset blogPost.datePosted = form.datePosted />
             <cfset blogPost.modifiedDateTime = now() />
+            <cfloop array=#blogPost.getCategories()# index=category>
+                <cfset EntityDelete(category) />
+            </cfloop>
 		<cfelse>
 			<!--- Create Entity --->
             <cfset blogPost = EntityNew('BlogPost') />
