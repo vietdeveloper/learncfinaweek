@@ -7,10 +7,21 @@
 <cfif form.submitted>
 
 	<!--- Upload File--->
+    <cffile action="upload" destination="#GetTempDirectory()#" fileField="importFile" nameconflict="makeunique" />
 
 	<!--- Read Spreadsheet --->
+    <cfspreadsheet action="read" src="#cffile.serverDirectory#/#ccfile.serverFile#" query="importData" headerRow="1" excludeHeaderRow="true" />
 		
 	<!--- Import Data --->		
+    <cfloop query="importData">
+        <cfset blogPost = EntityNew('blogPost') />
+        <cfset blogPost.title = importData.title />
+        <cfset blogPost.summary = importData.summary />
+        <cfset blogPost.body = importData.body />
+        <cfset blogPost.dateposted = importData['Date Post'] />
+        <cfset EntitySave(blogPost) />
+    </cfloop>
+    <cfset ormFlush() />
 	<cflocation url="listblogpost.cfm?message=#urlencodedformat('Blog Posts Imported Successfully')#" addtoken="false" />
 </cfif>
 
