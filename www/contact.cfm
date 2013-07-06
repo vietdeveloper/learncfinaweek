@@ -5,7 +5,6 @@
 <cfscript>
     contactInfo = {address='12345 Main Street, Los Angeles, CA 90001', phonenumber='(213) 555-5555', email='viet@example.com', skype=''};
 </cfscript>
-<cfset utilities = CreateObject('cfc.utilities') />
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="contact">
 		
@@ -104,7 +103,7 @@
 								<div class="clr"><div class="input-box1">Address</div><span>#contactInfo.address#</span></div>
 								<div class="clr"> &nbsp;</div>
 								<div class="clr"><div class="input-box1">Phone</div><span>#contactInfo.phonenumber#</span></div>
-								<div class="clr"><div class="input-box1">E-mail</div><span><a href="##">#utilities.convertStringToASCII(contactInfo.email)#</a></span>  </div>
+								<div class="clr"><div class="input-box1">E-mail</div><span><a href="##">#application.utilities.convertStringToASCII(contactInfo.email)#</a></span>  </div>
 								<div class="clr"><div class="input-box1">Skype </div> <span><a href="##">#contactInfo.skype#</a></span> </div> 
                                 </cfoutput>
 							</div>
