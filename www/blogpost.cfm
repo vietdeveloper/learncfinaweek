@@ -1,4 +1,13 @@
+<cfparam name=form.submitted default="0" />
 <cfset blogPost = EntityLoad('BlogPost', url.id, true) />
+<cfif form.submitted>
+    <cfset comment = EntityNew('blogComment') />
+    <cfset comment.author = form.author />
+    <cfset comment.comment = form.comment />
+    <cfset comment.createdDateTime = now() />
+    <cfset blogPost.addComment(comment) />
+    <cfset EntitySave(blogPost) />
+</cfif>
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="Blog">
 		
@@ -50,7 +59,7 @@
                                         <cfloop array=#blogPost.getComments()# index=comment>
 										<li>
 											<p>
-												<strong>Posted On:</strong> #dateFormat(comment.createDateTime, 'mm/dd/yyyy')# at #timeformat(comment.createDateTime, 'short')# By #comment.author#
+												<strong>Posted On:</strong> #dateFormat(comment.createdDateTime, 'mm/dd/yyyy')# at #timeformat(comment.createdDateTime, 'short')# By #comment.author#
 											</p>
 											<p>
 												#comment.comment#
@@ -67,10 +76,10 @@
 								<div class="clr hline">&nbsp;</div>
 		
 								<div class="clr postComment">
-									<form action="blogpost.cfm" method="post" id="form">
+									<form action="blogpost.cfm?id=#blogPost.id#" method="post" id="form">
 										<div>
 											<label>Name <span class="font-11">(required)</span></label>
-											<input name="contactname" type="text" class="required" />
+											<input name="author" type="text" class="required" />
 										</div>
 										<div class="textarea">
 											<label>Comment <span class="font-11">(required)</span></label>				
