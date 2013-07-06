@@ -1,0 +1,1 @@
+<cfparam name="url.id" default="0"><cfset blogPost = EntityLoad('blogPost', url.id, true) /><cfif !IsNull(blogPost)>    <cfdocument format="PDF">        <cfoutput>        <h1>#blogPost.title#</h1>        <p><strong>Date Posted</strong>: #DateFormat(blogPost.datePosted, 'mm/dd/yyyy')#</p>        <p>#blogPost.body#</p>        </cfoutput>    </cfdocument></cfif>
