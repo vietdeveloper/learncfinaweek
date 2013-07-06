@@ -1,8 +1,12 @@
-<cfscript>
-	myQry = new Query();
-	myQry.SetSQL("SELECT title, website, image, summary AS description FROM portfolio ORDER BY id");
-	portfolio = myQry.execute().getResult();
-</cfscript>
+<cfset myPortfolio = cacheGet('myPortfolio') />
+<cfif IsNull(myPortfolio)>
+    <cfscript>
+        myQry = new Query();
+        myQry.SetSQL("SELECT title, website, image, summary AS description FROM portfolio ORDER BY id");
+        myPortfolio = myQry.execute().getResult();
+    </cfscript>
+    <cfset CachePut('myPortfolio', myPortfolio) />
+</cfif>
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="portfolio">
 		
@@ -36,17 +40,17 @@
 						<div>
 							<ul id="portfolio-list">
 								<!-- Start Portfolio -->
-                                <cfoutput query="portfolio">
+                                <cfoutput query="myPortfolio">
 								    <li>
 									    <div class="left">
-										    <a href="#portfolio.website#" title="#portfolio.title#" class="viewDetail ">
-											    <img src="assets/images/portfolio/#portfolio.image#"   alt=" " border="0" />
-											    <h5>#portfolio.title#</h5>
+										    <a href="#myPortfolio.website#" title="#myPortfolio.title#" class="viewDetail ">
+											    <img src="assets/images/portfolio/#myPortfolio.image#"   alt=" " border="0" />
+											    <h5>#myPortfolio.title#</h5>
 										    </a>
 									    </div>
 									    <div class="right">
 										    <p>
-                                                #portfolio.description#
+                                                #myPortfolio.description#
 										    </p>
 									    </div>
 								    </li>

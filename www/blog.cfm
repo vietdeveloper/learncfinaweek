@@ -1,4 +1,3 @@
-<cfset blogPosts = EntityLoad('blogPost') />
 <cfimport taglib="customTags/" prefix="layout" />
 <layout:page section="blog">
 		
@@ -24,6 +23,8 @@
 						<div class="clr">
 							<div class="left">
 								<!-- Blog Posts -->
+                                <cfcache action="cache" timespan="#CreateTimeSpan(0,1,0,0)#">
+                                <cfset blogPosts = EntityLoad('blogPost') />
                                 <cfoutput>
 								<cfloop array="#blogPosts#" index="blogPost">
 									<!-- Start Blog Post -->
@@ -41,6 +42,7 @@
 									<!-- End Blog Post -->
 								</cfloop>
                                 </cfoutput>
+                                </cfcache>
 							</div>
 							<div class="right" >
 								<h2>Categories</h2>
