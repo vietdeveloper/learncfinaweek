@@ -15,9 +15,12 @@
 	<cfif !errorBean.hasErrors()>
 		<cfif val(form.id)>
 			<!--- Edit Entity  --->
+            <cfset blogCategory = EntityLoad('BlogCategory', form.id, true) />
 		<cfelse>
 			<!--- Create Entity --->
+            <cfset blogCategory = EntityNew('BlogCategory') />
 		</cfif>
+        <cfset blogCategory.name = form.name />
 		
 		<cfset entitySave(BlogCategory) />
 		<cfset ormFlush() />
@@ -28,6 +31,9 @@
 
 <cfif val(url.id)>
 	<!--- Get Entity Data --->
+    <cfset blogCategory = EntityLoad('BlogCategory', url.id, true) />
+    <cfset form.id = blogCategory.id />
+    <cfset form.name = blogCategory.name />
 </cfif>
 
 <cfoutput>
