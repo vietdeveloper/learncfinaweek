@@ -19,4 +19,14 @@ component persistent="true" {
         }
         return categoryList;
     }
+    
+    public string function getCategoryNames() {
+        var categoryList = '';
+        if (hasCategories()) {
+            for (var categoryPost in getCategories()) {
+                categorList = ListAppend(categoryList, categoryPost.blogCategory.name, ', ');
+            }
+        }
+        return categoryList;
+    }
 }

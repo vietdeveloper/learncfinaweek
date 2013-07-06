@@ -35,7 +35,7 @@
 									</h2>
 									<p>#blogPost.summary#</p>
 									<p class="summary">
-										<strong>Categories:</strong> 
+										<strong>Categories:</strong> #blogPost.getCategoryNames()#
 										<strong>Comments:</strong> #arrayLen(blogPost.getComments())#
 									</p>
 									<!-- End Blog Post -->
