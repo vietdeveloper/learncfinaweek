@@ -122,9 +122,9 @@
 									<!-- Twitter Output -->
 									<ul>
                                         <cfoutput>
-                                            <cfloop array="#XmlParse(twitterFeed.fileContent).statuses.status#" index="feedItem">
+                                            <cfloop array="#XmlParse(twitterFeed.fileContent).errors.error#" index="feedItem">
                                                 <li>
-                                                    #dateformat(feedItem.created_at.xmlText,'mm/dd/yyyy')# - #feedItem.text.xmlText#
+                                                    #feedItem#
                                                 </li>
                                             </cfloop>
                                         </cfoutput>
