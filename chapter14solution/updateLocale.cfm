@@ -1,1 +1,0 @@
-﻿<cfset setLocale('English (UK)') />
