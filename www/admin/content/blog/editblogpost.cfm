@@ -57,6 +57,11 @@
 		
 		<cfloop list="#form.categories#" index="categoryID">
 			<!--- Add Category to Entity --->
+            <cfset blogPostCategory = EntityNew('blogPostCategory') />
+            <cfset blogCategory = EntityLoad('blogCategory', categoryID, true) />
+            <cfset blogPostCategory.blogCategory = blogCategory />
+            <cfset blogPostCategory.blogPost = blogPost />
+            <cfset EntitySave(blogPostCategory) />
 		</cfloop>
 		
 		<cfset ormFlush() />
@@ -73,6 +78,7 @@
     <cfset form.summary = blogPost.summary />
     <cfset form.body = blogPost.body />
     <cfset form.datePosted = blogPost.datePosted />
+    <cfset form.categories = blogPost.categoryids />
 </cfif>
 
 <cfset categories = entityLoad('BlogCategory' ) />

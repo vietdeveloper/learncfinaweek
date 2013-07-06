@@ -9,4 +9,14 @@ component persistent="true" {
     property name="deleted" ormtype="boolean";
     property name="comments" singularname="comment" fieldtype="one-to-many" cfc="blogComment" fkcolumn="blogpostid" cascade="all";
     property name="categories" fieldtype="one-to-many" cfc="blogPostCategory" fkcolumn="blogpostid";
+    
+    public string function getCategoryIds() {
+        var categoryList = '';
+        if (hasCategories()) {
+            for (var categoryPost in getCategories()) {
+                categoryList = ListAppend(categoryList, categoryPost.blogCategory.id);
+            }
+        }
+        return categoryList;
+    }
 }
