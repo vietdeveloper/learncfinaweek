@@ -7,6 +7,9 @@ component {
     this.ormEnabled = true;
     this.ormSettings = {logsql = true, dbcreate="update", cfclocation="com/entity"};
     this.invokeImplicitAccessor = true;
+    this.sessioncookie.httponly = true;
+    this.sessioncookie.timeout = "10";
+    this.sessioncookie.disableupdate = true;
     
     function onApplicationStart() {
         application.myName = "Viet";

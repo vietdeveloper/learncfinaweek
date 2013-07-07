@@ -10,20 +10,21 @@
 	<cfquery name="qLoginCheck">
 		SELECT
 			id,
-			emailaddress
+			emailaddress, 
+            password, 
+            salt
 		FROM
 			administrator
 		WHERE
 			emailAddress = <cfqueryparam value="#trim(form.emailaddress)#" cfsqltype="cf_sql_varchar" />
-		AND
-			password = <cfqueryparam value="#trim(form.password)#" cfsqltype="cf_sql_varchar" />	
 	</cfquery>	
 	
-	<cfif !qLoginCheck.recordcount>
+	<cfif !qLoginCheck.recordcount || qLoginCheck.password NEQ Hash(form.password & qLoginCheck.salt, "SHA-512")>
 		<cfset errorBean.addError('Incorrect Login Details','emailaddress') />
 	<cfelse>
 		<cfset session.adminID = qLoginCheck.id />
 		<cfset session.emailaddress = qLoginCheck.emailaddress />
+        <cfset SessionRotate() />
 		<cflocation url="#form.redirectPage#" addToken="no" />
 	</cfif>		
 	

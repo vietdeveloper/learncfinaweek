@@ -36,6 +36,10 @@
 	</cfif>				
 	
 	<cfif !errorBean.hasErrors()>
+        <cfif len(trim(form.password))>
+            <cfset salt = Hash(GenerateSecretKey("AES"), "SHA-512") />
+            <cfset Password = Hash(form.password & salt, "SHA-512") />
+        </cfif>
 		<cfif val(form.id)>
 			<cfquery>
 				UPDATE
@@ -45,7 +49,8 @@
 					lastname = <cfqueryparam value="#trim(form.lastname)#" cfsqltype="cf_sql_varchar" />,
 					emailaddress = <cfqueryparam value="#trim(form.emailaddress)#" cfsqltype="cf_sql_varchar" />
 					<cfif len(trim(form.password))>
-						,password = <cfqueryparam value="#trim(form.password)#" cfsqltype="cf_sql_varchar" />
+						,password = <cfqueryparam value="#password#" cfsqltype="cf_sql_varchar" />
+						,salt = <cfqueryparam value="#salt#" cfsqltype="cf_sql_varchar" />
 					</cfif>
 				WHERE
 					id = <cfqueryparam value="#form.id#" cfsqltype="cf_sql_integer" />	
@@ -57,12 +62,14 @@
 					firstname,
 					lastname,
 					emailaddress,
-					password
+					password, 
+                    salt
 				) VALUES (
 					<cfqueryparam value="#trim(form.firstname)#" cfsqltype="cf_sql_varchar" />,
 					<cfqueryparam value="#trim(form.lastname)#" cfsqltype="cf_sql_varchar" />,
 					<cfqueryparam value="#trim(form.emailaddress)#" cfsqltype="cf_sql_varchar" />,
-					<cfqueryparam value="#trim(form.password)#" cfsqltype="cf_sql_varchar" />
+					<cfqueryparam value="#password#" cfsqltype="cf_sql_varchar" />,
+					<cfqueryparam value="#salt#" cfsqltype="cf_sql_varchar" />
 				)
 			</cfquery>
 		</cfif>
