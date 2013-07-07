@@ -18,6 +18,21 @@ component {
         return true;
     }
     
+    function onError(any Exception, string EventName) {
+        include 'sorry.cfm';
+        var errorEmail = new mail();
+        errorEmail.setTo('me@example.com');
+        errorEmail.setFrom('system@example.com');
+        errorEmail.setSubject('An Error has Occurred');
+        errorEmail.setBody('
+            Message: #arguments.exception.message# <br/>
+            Details: #arguments.exception.detail# <br/>
+            Type: #arguments.exception.type# <br/>
+        ');
+        errorEmail.setType('html');
+        errorEmail.send();
+    }
+    
     function onRequestStart(string targetPage) {
         if (structKeyExists(url, 'reload')) {
             onApplicationStart();

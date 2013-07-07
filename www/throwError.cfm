@@ -1,3 +1,1 @@
-<cfoutput>
-    #foo#
-</cfoutput>
+<cfdump value="2">
