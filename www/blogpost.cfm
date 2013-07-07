@@ -49,7 +49,7 @@
 								</h2>
 								<!-- Date Published -->
 								<p>
-									<strong>Date Posted</strong>: #dateformat(blogPost.dateposted, 'mm/dd/yyyy')#
+									<strong>Date Posted</strong>: #Lsdateformat(blogPost.dateposted, 'short')#
 								</p>
 								<!-- Blog Body -->
                                 #blogPost.body#
@@ -69,7 +69,7 @@
                                         <cfloop array=#blogPost.getComments()# index=comment>
 										<li>
 											<p>
-												<strong>Posted On:</strong> #dateFormat(comment.createdDateTime, 'mm/dd/yyyy')# at #timeformat(comment.createdDateTime, 'short')# By #encodeForHtml(comment.author)#
+												<strong>Posted On:</strong> #LsdateFormat(comment.createdDateTime, 'short')# at #Lstimeformat(comment.createdDateTime, 'medium')# By #encodeForHtml(comment.author)#
 											</p>
 											<p>
 												#encodeForHtml(comment.comment)#
